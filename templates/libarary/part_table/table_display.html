@@ -1,0 +1,7 @@
+<div>
+    {% for part_list in user_lists %}
+        {% block section %}
+        {% include './table.html' %}
+        {% endblock %}
+    {% endfor %}
+</div>

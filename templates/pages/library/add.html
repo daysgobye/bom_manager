@@ -1,0 +1,18 @@
+{% extends '_base.html' %} {% block title %}Libary{% endblock %}
+{% block content %} 
+{% if user.is_authenticated %}
+<h1>Add to your library</h1>
+<p>{{message}}</p>
+<form action="{% url 'add' %}" method="post" enctype="multipart/form-data">
+{% block form %}
+{% include '../../libarary/csv_upload/fourm.html' %}
+{% endblock %}
+</form>
+{% block section %}
+{% include '../../libarary/part_table/table_display.html' %}
+{% endblock %}
+
+{% else %}
+<p>please login</p>
+{% endif %}
+{% endblock content %}

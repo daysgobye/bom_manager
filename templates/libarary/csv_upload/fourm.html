@@ -1,0 +1,9 @@
+{% load crispy_forms_tags %}
+<div>
+  {% csrf_token %} {{ form|crispy }}
+  <div class="mb-3">
+    <label for="csv" class="form-label">Add To library</label>
+    <input class="form-control" type="file" id="csv" name="csv" />
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</div>

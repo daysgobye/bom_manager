@@ -1,0 +1,24 @@
+<div>
+    <h3>{{part_list.title}}</h3>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">location</th>
+            <th scope="col">name</th>
+            <th scope="col">package</th>
+            <th scope="col">value</th>
+            <th scope="col">mpt</th>
+            <th scope="col">qty</th>
+            <th scope="col">note</th>
+            <th scope="col">data sheet</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for part in part_list.list %}
+                {% block section %}
+                {% include './row.html' %}
+                {% endblock %}
+            {% endfor %}
+        </tbody>
+    </table>
+</div>

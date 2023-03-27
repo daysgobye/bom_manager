@@ -1,0 +1,16 @@
+{% load crispy_forms_tags %}
+
+<form action="{% url 'add' %}" method="post" enctype="multipart/form-data">
+  {% csrf_token %} {{ form|crispy }}
+  <div class="mb-3">
+    <label for="location" class="form-label">Location</label>
+    <input class="form-control" id="location" name="location" />
+    <input
+      class="form-control invisible"
+      id="id"
+      name="id"
+      value="{{part.id}}"
+    />
+  </div>
+  <button type="submit" class="btn btn-primary">update</button>
+</form>

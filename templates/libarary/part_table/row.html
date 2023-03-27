@@ -1,0 +1,18 @@
+<tr>
+  <td>
+  {% if part.location  == "missing" %}
+  {% block section %}
+  {% include './missing_location_fourm.html' %}
+  {% endblock %}
+{% else %}
+{{ part.location }}
+{% endif %}
+  </td>
+  <td>{{ part.name }}</td>
+  <td>{{ part.package }}</td>
+  <td>{{ part.value }}</td>
+  <td>{{ part.part_number }}</td>
+  <td>{{ part.qty }}</td>
+  <td>{{ part.note }}</td>
+  <td>{{ part.data_sheet }}</td>
+</tr>
