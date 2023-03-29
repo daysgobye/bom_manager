@@ -1,0 +1,31 @@
+{% extends '_base.html' %}
+{% block title %}Libary{% endblock %} 
+{% block content %}
+<p>
+    <button>
+        <a href="{% url 'library' %}">
+            your parts
+        </a>
+    </button>
+<button>
+    <a href="{% url 'add' %}">
+        add
+    </a>
+</button>
+<button>
+    <a href="{% url 'checkout' %}">
+        checkout
+    </a>
+</button>
+</p>
+
+<h1>{{user.username}} Libary</h1>
+
+{% if user.is_authenticated %}
+<p>{{message}}</p>
+{% block library_content %}
+{% endblock library_content %} 
+{% else %}
+<p>please login</p>
+{% endif %} 
+{% endblock content %}

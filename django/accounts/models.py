@@ -134,6 +134,9 @@ class CustomUser(AbstractUser):
                 part_in_db.save()
             except ObjectDoesNotExist:
                 pass
+    def delete_lookup(self):
+        self.part_libary_lookup.all().delete()
+
 
     def __str__(self):
         return self.email

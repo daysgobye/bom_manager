@@ -1,0 +1,25 @@
+{% extends './library_base.html' %}
+{% block library_content %} 
+{% load crispy_forms_tags %}
+
+
+<h2>Find the Parts</h2>
+<p>{{message}}</p>
+
+{% block lookup %}
+{% include '../../libarary/part_table/table.html' %}
+{% endblock %}
+<script>
+    const CSRF_TOKEN = '{{ csrf_token }}';
+    document.addEventListener("DOMContentLoaded", () => {
+        const url=document.URL
+        fetch(url, {
+            method: 'DELETE',
+            credentials: 'same-origin',
+            headers: { "X-CSRFToken": CSRF_TOKEN },
+
+        })
+});
+</script>
+
+{% endblock library_content %}

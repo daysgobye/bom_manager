@@ -1,8 +1,7 @@
-{% extends '_base.html' %} {% block title %}Libary{% endblock %}
-{% block content %} 
-{% if user.is_authenticated %}
-<h1>Add to your library</h1>
-<p>{{message}}</p>
+{% extends './library_base.html' %}
+{% block library_content %} 
+{% load crispy_forms_tags %}
+<h2>checkout</h2>
 <form action="{% url 'checkout' %}" method="post" enctype="multipart/form-data">
 {% block form_csv %}
 {% include '../../libarary/csv_upload/fourm.html' %}
@@ -15,8 +14,10 @@
 {% block lookup %}
 {% include '../../libarary/part_table/table.html' %}
 {% endblock %}
+<form action="{% url 'checkout' %}" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="method" value="put" />
+    {% csrf_token %} {{ form|crispy }}
 
-{% else %}
-<p>please login</p>
-{% endif %}
-{% endblock content %}
+    <button type="submit"> Check out all Parts in Lookup</button>
+</form>
+{% endblock library_content %}

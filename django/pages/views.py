@@ -10,7 +10,25 @@ class HomePageView(TemplateView):
 
 # class LibraryPageView(TemplateView):
 #     template_name = "pages/library.html"
+def find(request):
 
+    message=""
+    template_name = "pages/library/findcheckout.html"
+    user=request.user
+    lists=[
+        {
+        "title":"Your Mats",
+        "list":user.part_libary_lookup.all()
+        }
+    ]
+    if request.method == 'DELETE':
+        user.delete_lookup()
+        return HttpResponse("")
+
+    context = {'message':message,
+                'user_lists':lists,
+                "part_list":lists[0]}
+    return render(request, template_name, context)
 
 def libraryPageView(request):
     message=""
@@ -50,6 +68,7 @@ def checkout(request):
         lookup_value = request.POST.get('value',False)
         lookup_package = request.POST.get('package',False)
         lookup_part_number= request.POST.get('part_number',False)
+        checkout= request.POST.get('method',False)
         if csv_file:
             if csv_file.name.endswith('.csv'):
                 file_data = csv_file.read().decode("utf-8")	
@@ -62,10 +81,14 @@ def checkout(request):
                 user.lookup_single_part(lookup_value,lookup_package,lookup_part_number,lookup_qty)
             else:
                 message= "qty is missing"
+        elif checkout:
+            user.checkout_lookup()
+            return HttpResponseRedirect('checkout/find/')
 
 
         else:
            message="need to upload a file full of parts you want to check out"
+
     context = {'message':message,
                 'user_lists':lists,
                 "part_list":lists[0]}
